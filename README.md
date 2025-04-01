@@ -30,7 +30,7 @@ bash
 
 Copy
 
-go run main.go
+go run notes.go
 
 Usage
 
