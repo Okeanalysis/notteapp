@@ -46,12 +46,6 @@ func creattenote(w http.ResponseWriter, r *http.Request) {
 }
 
 func updattenote(w http.ResponseWriter, r *http.Request) {
-	var num int
-
-	if err := json.NewDecoder(r.Body).Decode(&num); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
 
 	numStr := r.URL.Path[len("/note/update/"):]
 
@@ -108,7 +102,7 @@ func removenote(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/note", getnote)
 	http.HandleFunc("/note/create", creattenote)
-	http.HandleFunc("/note/update", updattenote)
+	http.HandleFunc("/note/update/", updattenote)
 	http.HandleFunc("/note/remove", removenote)
 
 	fmt.Println("server running")
