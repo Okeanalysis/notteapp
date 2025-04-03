@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 	"sync"
 )
 
@@ -41,6 +42,22 @@ func creattenote(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(note)
+
+}
+
+func updattenote(w http.ResponseWriter, r *http.Request) {
+	var num int
+	if err := json.NewDecoder(r.Body).Decode(&num); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	numStr := r.URL.Path[len("/note/update/")]
+
+	num, err := strconv.Atoi(numStr)
+	if err != nil {
+		http.Error
+	}
 
 }
 
